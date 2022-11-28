@@ -2,3 +2,13 @@
 <ul><%= @car.model %></ul>
 <ul><%= @car.color %></ul>
 <%# <%= link_to 'Delete this car', href='cars' %>
+
+<ul>
+  <% @car.bookings.each do |booking| %>
+  <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
+  <%= link_to "Delete this booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %> </li>
+  <%#= link_to "Edit this booking", edit_booking_path(booking) %> </li>
+  <% end %>
+</ul>
+
+<%= link_to "Book this car", new_car_booking_path(@car) %>
