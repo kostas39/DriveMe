@@ -246,7 +246,11 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
+<<<<<<< HEAD
+  arm64-darwin-21
+=======
   arm64-darwin-20
+>>>>>>> 5d405b525d7951906670bd0c4e36410e775dd8d9
   x86_64-darwin-21
   x86_64-linux
 
