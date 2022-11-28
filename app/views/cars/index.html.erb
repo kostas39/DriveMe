@@ -4,4 +4,7 @@
 <li><%= car.model %></li>
 <li><%= car.color %></li>
 </ul>
+<%= link_to 'View this car', car_path(car) %>
 <% end %>
+
+<p><%= link_to 'Add a car', href='cars/new'%></p>

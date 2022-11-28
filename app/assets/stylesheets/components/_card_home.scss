@@ -7,3 +7,11 @@
     color: $dark-olive;
   }
 }
+
+.cards-container-custom {
+  display: grid;
+  width:100vh;
+  grid-template-columns:1fr 1fr;
+  grid-gap: 16px;
+  margin:auto;
+}

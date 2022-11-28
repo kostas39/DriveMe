@@ -1,16 +1,15 @@
 
-<%# navbar goes here %>
-
-
 <div class="banner">
 <h1> DriveMe </h1>
+<h3> Your car hire made easy.</h3>
 </div>
+<%# Displaying cars by id to be integrated %>
+<div class="cards-container-custom container border rounded">
 
-<div class="card-container container d-flex border">
   <div class="m-4 card c-container shadow" style="width: 18rem;">
-    <img src="https://loremflickr.com/100/75/toyota" class="card-img-top rounded" alt="...">
+    <img src="https://loremflickr.com/300/200/car" class="card-img-top rounded" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Toyota</h5>
+      <h5 class="card-title">Car Name</h5>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
     <div class="card-body border-top">
@@ -18,10 +17,11 @@
       <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
     </div>
   </div>
-<div class="m-4 card c-container shadow" style="width: 18rem;">
-    <img src="https://loremflickr.com/100/75/bmw" class="card-img-top rounded" alt="...">
+
+  <div class="m-4 card c-container shadow" style="width: 18rem;">
+    <img src="https://loremflickr.com/300/200/car" class="card-img-top rounded" alt="...">
     <div class="card-body">
-      <h5 class="card-title">BMW</h5>
+      <h5 class="card-title">Car Name</h5>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
     <div class="card-body border-top">
@@ -29,6 +29,19 @@
       <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
     </div>
   </div>
+
+  <div class="m-4 card c-container shadow" style="width: 18rem;">
+    <img src="https://loremflickr.com/300/200/car" class="card-img-top rounded" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Car Name</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <div class="card-body border-top">
+      <%= link_to "Details", "#", class:"m-2 text-decoration-none" %>
+      <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
+    </div>
+  </div>
+
 </div>
 
 <%# display dashboard with users cars if logged in
