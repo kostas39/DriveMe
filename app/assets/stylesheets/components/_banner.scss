@@ -1,0 +1,14 @@
+.banner {
+  margin:0;
+  background-image: url(asset_path("fiat500.jpeg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  color: $sand;
+}
