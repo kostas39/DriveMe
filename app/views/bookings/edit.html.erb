@@ -1,0 +1,6 @@
+<h3>Edit your booking </h3>
+<%= simple_form_for [@car, @booking] do |f| %>
+<%= f.input :start_date, :as :datepicker %>
+<%= f.input :end_date, :as :datepicker %>
+<%= f.submit class: "btn btn-flat" %>
+<% end %>
