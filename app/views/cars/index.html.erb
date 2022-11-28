@@ -1,7 +1,19 @@
 <% @cars.each do |car| %>
-<ul>
-<li><%= car.brand %></li>
-<li><%= car.model %></li>
-<li><%= car.color %></li>
-</ul>
+
+<div class="cards-container-custom container border rounded">
+
+  <div class="m-4 card c-container shadow" style="width: 18rem;">
+    <img src="https://loremflickr.com/300/200/car" class="card-img-top rounded" alt="image of a car">
+    <div class="card-body">
+      <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
+      <p class="card-text">A Lovely <%= car.color %> in <%= car.color %></p>
+    </div>
+    <div class="card-body border-top">
+      <%= link_to "Details", "#", class:"m-2 text-decoration-none" %>
+      <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
+    </div>
+  </div>
+
+</div>
+
 <% end %>
