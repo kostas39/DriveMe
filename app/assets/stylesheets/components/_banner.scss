@@ -1,11 +1,14 @@
 .banner {
   margin:0;
-  background-image: url("https://loremflickr.com/1200/400/sunset");
+  background-image: url(asset_path("fiat500.jpeg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   height:400px;
-}
-
-.banner-img {
-  margin: 0;
-  object-fit: cover;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  color: $sand;
 }
