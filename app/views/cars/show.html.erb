@@ -1,4 +1,7 @@
 <ul><%= @car.brand %></ul>
 <ul><%= @car.model %></ul>
 <ul><%= @car.color %></ul>
-<%# <%= link_to 'Delete this car', href='cars' %>
+
+<%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
+
+<%= link_to 'Back to cars', href='/cars' %>
