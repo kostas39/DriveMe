@@ -1,7 +1,35 @@
-<h1>DriveMe</h1>
+
+<%# navbar goes here %>
 
 
+<div class="banner">
+<h1> DriveMe </h1>
+</div>
 
+<div class="card-container container d-flex border">
+  <div class="m-4 card c-container shadow" style="width: 18rem;">
+    <img src="https://loremflickr.com/100/75/toyota" class="card-img-top rounded" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Toyota</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <div class="card-body border-top">
+      <%= link_to "Details", "#", class:"m-2 text-decoration-none" %>
+      <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
+    </div>
+  </div>
+<div class="m-4 card c-container shadow" style="width: 18rem;">
+    <img src="https://loremflickr.com/100/75/bmw" class="card-img-top rounded" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">BMW</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <div class="card-body border-top">
+      <%= link_to "Details", "#", class:"m-2 text-decoration-none" %>
+      <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
+    </div>
+  </div>
+</div>
 
 <%# display dashboard with users cars if logged in
     if not logged in display index of all cars %>
