@@ -1,8 +1,32 @@
-<ul><%= @car.brand %></ul>
-<ul><%= @car.model %></ul>
-<ul><%= @car.color %></ul>
-<%# <%= link_to 'Delete this car', href='cars' %>
+<div class="m-0 show-banner h-50"> <%# houses individual car %>
+    <div id="carousel-car-card" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% if @car.photos.attached? %>
+          <div class="carousel-item active image-carousel">
+            <%= cl_image_tag @car.photos[0].key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
+          </div>
+          <% @car.photos[1..-1].each do |photo| %>
+            <div class="carousel-item image-carousel">
+              <%= cl_image_tag photo.key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
+            </div>
+          <% end %>
+          <% end %>
+      </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-car-card" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-car-card" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
 
+<div class="text-bg-dark">
+        <h2 class="p-3 m-0"> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
+</div>
+<div class="show-desc">
 <ul>
   <% @car.bookings.each do |booking| %>
   <% if current_user == booking.user %>
@@ -15,15 +39,20 @@
   <%#= link_to "Edit this booking", edit_booking_path(booking) %> </li>
   <% end %>
 </ul>
- <%= current_user   %>
-<%= link_to "Book this car", new_car_booking_path(@car) %>
-
-<% if current_user == @car.user %>
-<%= button_to 'Delete car', @car, method: :delete %>
-<%= button_to 'Edit car', edit_car_path(@car), method: :get %>
-<% else %>
-<%= nil %>
-<% end %>
-<%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
-
-<%= link_to 'Back to cars', href='/cars' %>
+ <% current_user %>
+ <h2>Description:</h2>
+  <div class="description card m-3 p-3">
+    <p>Here we have a lovely car i'm hiring</p> <%# we may need a car.description added to schema %>
+  </div>
+  <div class="desc-buttons">
+    <%= link_to "Book this car", new_car_booking_path(@car), class:"btn btn-dark" %>
+    <% if current_user == @car.user %>
+    <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark" %>
+    <%= button_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark" %>
+    <% else %>
+    <%= nil %>
+    <% end %>
+    <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
+    <%= link_to 'Go Back', href='/cars', class:"btn btn-dark" %>
+  </div>
+</div>
