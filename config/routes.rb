@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 ##  get 'bookings/update'
 ##  get 'bookings/destroy'
   devise_for :users
-  root to: "pages#home"
+  root to: "pages#home", to: "cars#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # resources :cars
   # Defines the root path route ("/")
