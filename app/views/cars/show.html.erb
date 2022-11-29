@@ -29,14 +29,12 @@
 <div class="show-desc">
 <ul>
   <% @car.bookings.each do |booking| %>
-  <% if current_user == booking.user %>
-  <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
-    <%= button_to "Delete this booking", booking, method: :delete %>
+    <% if current_user == booking.user %>
+      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
+      <%= button_to "Delete this booking", booking, method: :delete %>
     <% else %>
-    <%= nil %>
-  <% end %>
-  <%#= booking.user  %>
-  <%#= link_to "Edit this booking", edit_booking_path(booking) %> </li>
+      <%= nil %>
+    <% end %>
   <% end %>
 </ul>
  <% current_user %>
@@ -45,12 +43,18 @@
     <p>Here we have a lovely car i'm hiring</p> <%# we may need a car.description added to schema %>
   </div>
   <div class="desc-buttons">
-    <%= link_to "Book this car", new_car_booking_path(@car), class:"btn btn-dark" %>
+    <% if user_signed_in?  %>
+      <%= link_to "Book this car", new_car_booking_path(@car), class:"btn btn-dark" %>
+    <% else %>
+      <%= nil %>
+    <% end %>
+
+
     <% if current_user == @car.user %>
     <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark" %>
     <%= button_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark" %>
     <% else %>
-    <%= nil %>
+      <%= nil %>
     <% end %>
     <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
     <%= link_to 'Go Back', href='/cars', class:"btn btn-dark" %>
