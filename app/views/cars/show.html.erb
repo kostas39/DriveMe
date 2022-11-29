@@ -5,8 +5,8 @@
 
 <ul>
   <% @car.bookings.each do |booking| %>
+  <% if current_user == booking.user %>
   <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
-  <% if current_user = @car.user %>
     <%= button_to "Delete this booking", booking, method: :delete %>
     <% else %>
     <%= nil %>
@@ -22,9 +22,12 @@
 <%= nil %>
 <% end %>
 
+<% if current_user == @car.user %>
+<%= button_to 'Delete car', @car, method: :delete %>
+<%= button_to 'Edit car', edit_car_path(@car), method: :get %>
+<% else %>
+<%= nil %>
+<% end %>
 <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
 
 <%= link_to 'Back to cars', href='/cars' %>
-
-<%= button_to 'Delete car', @car, method: :delete %>
-<%= button_to 'Edit car', edit_car_path(@car), method: :get %>
