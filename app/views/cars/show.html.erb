@@ -22,5 +22,7 @@
 
 <%= link_to 'Back to cars', href='/cars' %>
 
-<%= button_to 'Delete car', @car, method: :delete %>
-<%= button_to 'Edit car', edit_car_path(@car), method: :get %>
+<%= button_to 'Delete car', @car, method: :delete if policy(@car).destroy?%>
+<% if policy(@car).edit?%>
+<%= link_to 'Edit car', edit_car_path(@car) %>
+<% end %>
