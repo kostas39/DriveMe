@@ -16,3 +16,6 @@
 <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
 
 <%= link_to 'Back to cars', href='/cars' %>
+
+<%= button_to 'Delete car', @car, method: :delete %>
+<%= button_to 'Edit car', edit_car_path(@car), method: :get %>
