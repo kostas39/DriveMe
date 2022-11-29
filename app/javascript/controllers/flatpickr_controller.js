@@ -5,11 +5,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
 export default class extends Controller {
   connect() {
-    flatpickr(this.element, {
-      altInput: true,
-        plugins: [new rangePlugin({
-          input: "#booking_end_date"
-        })]
-    });
+    console.log("Hello")
+    flatpickr(this.element, {});
   }
 }

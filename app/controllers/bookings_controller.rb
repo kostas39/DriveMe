@@ -8,8 +8,10 @@ class BookingsController < ApplicationController
     @reservations = Booking.all
     available = []
     dates = params[:booking]
-    start_date = Date.new dates["start_date(1i)"].to_i, dates["start_date(2i)"].to_i, dates["start_date(3i)"].to_i
-    end_date = Date.new dates["end_date(1i)"].to_i, dates["end_date(2i)"].to_i, dates["end_date(3i)"].to_i
+    #start_date = Date.new dates["start_date(1i)"].to_i, dates["start_date(2i)"].to_i, dates["start_date(3i)"].to_i
+    #end_date = Date.new dates["end_date(1i)"].to_i, dates["end_date(2i)"].to_i, dates["end_date(3i)"].to_i
+    start_date = dates["start_date"].to_date
+    end_date = dates["end_date"].to_date
     @reservations.each do |reservation|
       if reservation.start_date < start_date && reservation.end_date > start_date
         available << 1
@@ -26,6 +28,8 @@ class BookingsController < ApplicationController
       @car = Car.find(params[:car_id])
       @booking = Booking.new
       flash.alert = "Dates not available"
+      @booking.start_date = @booking.start_date
+      @booking.end_date = @booking.end_date
       render :new, status: :unprocessable_entity
     else
       @car = Car.find(params[:car_id])
@@ -35,6 +39,8 @@ class BookingsController < ApplicationController
       if @booking.save
         redirect_to car_path(@car.id)
       else
+        @booking.start_date = @booking.start_date
+        @booking.end_date = @booking.end_date
         render :new
       end
     end
