@@ -4,7 +4,7 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-// @import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 @import "flatpickr/dist/flatpickr";
 
@@ -14,8 +14,7 @@
 
 body {
   margin:0;
-  color: #565A5C;
-  background-color: #F8F8F8;
+  background-color: $sand;
   .main-container{
     padding-top: 20px;
   }
