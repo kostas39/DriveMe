@@ -1,6 +1,7 @@
 <ul><%= @car.brand %></ul>
 <ul><%= @car.model %></ul>
 <ul><%= @car.color %></ul>
+<ul><%= @car.price %></ul>
 
 <ul>
   <% @car.bookings.each do |booking| %>
@@ -12,8 +13,12 @@
     <% end %>
   <% end %>
 </ul>
- <%= current_user   %>
+
+<% if user_signed_in?  %>
 <%= link_to "Book this car", new_car_booking_path(@car) %>
+<% else %>
+<%= nil %>
+<% end %>
 
 <% if current_user == @car.user %>
   <%= button_to 'Delete car', @car, method: :delete %>
