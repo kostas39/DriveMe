@@ -6,11 +6,16 @@
 <ul>
   <% @car.bookings.each do |booking| %>
   <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
-  <%= link_to "Delete this booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %> </li>
+  <% if current_user = @car.user %>
+    <%= button_to "Delete this booking", booking, method: :delete %>
+    <% else %>
+    <%= nil %>
+  <% end %>
+  <%#= booking.user  %>
   <%#= link_to "Edit this booking", edit_booking_path(booking) %> </li>
   <% end %>
 </ul>
-
+ <%= current_user   %>
 <%= link_to "Book this car", new_car_booking_path(@car) %>
 
 <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
