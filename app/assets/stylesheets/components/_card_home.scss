@@ -1,17 +1,16 @@
 .c-container {
-  background-color: $light-gray;
   border-radius: 10px;
   overflow: hidden;
-  color:$dark-olive;
+  color:$light-gray;
   a {
-    color: $dark-olive;
+    color: $light-gray;
   }
+  box-shadow: 10px 8px 4px $black;
+  border:none;
 }
 
-.cards-container-custom {
-  display: grid;
-  width:100vh;
-  grid-template-columns:1fr 1fr;
-  grid-gap: 16px;
-  margin:auto;
+.card-img-cust {
+  object-fit: cover;
+  object-position: center;
+  height:20vh;
 }
