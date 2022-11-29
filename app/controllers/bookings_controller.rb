@@ -1,7 +1,12 @@
 class BookingsController < ApplicationController
+  def index
+    @booking = policy_scope(Booking)
+  end
+
   def new
     @car = Car.find(params[:car_id])
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
@@ -27,6 +32,7 @@ class BookingsController < ApplicationController
     if available.count > 0
       @car = Car.find(params[:car_id])
       @booking = Booking.new
+      authorize @booking
       flash.alert = "Dates not available"
       @booking.start_date = @booking.start_date
       @booking.end_date = @booking.end_date
@@ -34,6 +40,7 @@ class BookingsController < ApplicationController
     else
       @car = Car.find(params[:car_id])
       @booking = Booking.new(booking_params)
+      authorize @booking
       @booking.car = @car
       @booking.user = current_user
       if @booking.save
@@ -46,21 +53,22 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit
-    @booking = Booking.find(params[:id])
-  end
-
-  def update
-    @booking = Booking.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to car_path(@car.id)
-    else
-      render :edit
-    end
-  end
+##  def edit
+##    @booking = Booking.find(params[:id])
+##  end
+##
+##  def update
+##    @booking = Booking.find(params[:id])
+##    if @booking.update(booking_params)
+##      redirect_to car_path(@car.id)
+##    else
+##      render :edit
+##    end
+##  end
 
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to cars_path
   end
