@@ -31,6 +31,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
       <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+      <p><%= "Price per day £#{car.price}" %></p>
     </div>
     <div class="card-body border-top">
       <%= link_to "Book this car", car_path(car), class:"m-2 text-decoration-none" %>
