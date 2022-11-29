@@ -35,22 +35,6 @@ class BookingsController < ApplicationController
     end
   end
 
-<<<<<<< Updated upstream
-  def edit
-    @booking = Booking.find(params[:id])
-  end
-
-  def update
-    @booking = Booking.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to car_path(@car.id)
-    else
-      render :edit
-    end
-  end
-
-=======
->>>>>>> Stashed changes
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
