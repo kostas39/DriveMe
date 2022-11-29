@@ -6,3 +6,5 @@
 <% end %>
 
 <%= link_to "Get back to my car", car_path(@car.id)  %>
+
+<%= flatpickr(".calendar",{enableTime: true, dateFormat: "Y-m-d H:i",}) %>

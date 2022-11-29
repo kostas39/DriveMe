@@ -11,7 +11,11 @@
   <% end %>
 </ul>
 
+<% if user_signed_in?  %>
 <%= link_to "Book this car", new_car_booking_path(@car) %>
+<% else %>
+<%= nil %>
+<% end %>
 
 <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
 
