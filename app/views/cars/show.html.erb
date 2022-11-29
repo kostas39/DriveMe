@@ -30,7 +30,7 @@
 <ul>
   <% @car.bookings.each do |booking| %>
     <% if current_user == booking.user %>
-      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
+      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
       <%= button_to "Delete this booking", booking, method: :delete %>
     <% else %>
       <%= nil %>
