@@ -34,8 +34,8 @@
       <p><%= "Price per day £#{car.price}" %></p>
     </div>
     <div class="card-body border-top">
-      <%= link_to "Book this car", car_path(car), class:"m-2 text-decoration-none" %>
-      <%= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
+      <%= link_to "See more", car_path(car), class:"m-2 text-decoration-none" %>
+      <%#= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
     </div>
   </div>
 
@@ -43,6 +43,4 @@
 
 <% end %>
 
-<p><%= link_to 'Add a car', href='cars/new'%></p>
-
-
+<p><%= link_to 'Add a car', href='cars/new', class:"btb btn-primary"%></p>

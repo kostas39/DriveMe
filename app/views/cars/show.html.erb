@@ -30,7 +30,7 @@
 <ul>
   <% @car.bookings.each do |booking| %>
     <% if current_user == booking.user %>
-      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date}" %>
+      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
       <%= button_to "Delete this booking", booking, method: :delete %>
     <% else %>
       <%= nil %>
@@ -40,7 +40,12 @@
  <% current_user %>
  <h2>Description:</h2>
   <div class="description card m-3 p-3">
-    <p>Here we have a lovely car i'm hiring</p> <%# we may need a car.description added to schema %>
+    <p> <%=  "This is a lovely #{@car.color} #{@car.model} from #{@car.brand}. It is located in #{@car.location}." %> </p>
+    <p> Details </p>
+    <ul>
+    <li> <%= "Price per day: #{@car.price}£" %>
+    <li> <%= "Engine: #{@car.engine_size}" %>
+    </ul>
   </div>
   <div class="desc-buttons">
     <% if user_signed_in?  %>
@@ -56,7 +61,6 @@
     <% else %>
       <%= nil %>
     <% end %>
-    <%# <%= link_to 'Delete this car', car_path(@car.destroy) %>
-    <%= link_to 'Go Back', href='/cars', class:"btn btn-dark" %>
+    <%= link_to 'Back to car list', href='/cars', class:"btn btn-dark" %>
   </div>
 </div>
