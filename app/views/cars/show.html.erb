@@ -24,21 +24,12 @@
 </div>
 
 <div class="text-bg-dark">
-        <h2 class="p-3 m-0"> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
+  <h2 class="p-3 m-0"> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
 </div>
+
 <div class="show-desc">
-<ul>
-  <% @car.bookings.each do |booking| %>
-    <% if current_user == booking.user %>
-      <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
-      <%= button_to "Cancel this booking", booking, method: :delete %>
-    <% else %>
-      <%= nil %>
-    <% end %>
-  <% end %>
-</ul>
- <% current_user %>
- <h2>Description:</h2>
+
+  <h2>Description:</h2>
   <div class="description card m-3 p-3">
     <p> <%=  "This is a lovely #{@car.color} #{@car.model} from #{@car.brand}. It is located in #{@car.location}." %> </p>
     <p> Details </p>
@@ -47,17 +38,37 @@
     <li> <%= "Engine: #{@car.engine_size}" %>
     </ul>
   </div>
-  <div class="desc-buttons">
-    <% if user_signed_in?  %>
-      <%= link_to "Book this car", new_car_booking_path(@car), class:"btn btn-dark" %>
-    <% else %>
-      <%= nil %>
+
+  <ul>
+    <% @car.bookings.each do |booking| %>
+      <% if current_user == booking.user %>
+        <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
+        <%= button_to "Cancel this booking", booking, method: :delete %>
+      <% else %>
+        <%= nil %>
+      <% end %>
     <% end %>
+  </ul>
 
+  <% if user_signed_in? %>
+   <div class="row my-5 justify-content-center">
+      <div class="col-4">
+        <h3>Book this car </h3>
+        <%= simple_form_for [@car, @booking] do |f| %>
+          <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
+          <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
+          <%= f.submit "Get driving", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <p> You must be logged in to book this car </p>
+  <% end %>
 
+  <div class="desc-buttons">
     <% if current_user == @car.user %>
-    <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark" %>
-    <%= button_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark" %>
+      <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark" %>
+      <%= button_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark" %>
     <% else %>
       <%= nil %>
     <% end %>
