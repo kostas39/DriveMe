@@ -42,7 +42,7 @@ class BookingsController < ApplicationController
       @booking.user = current_user
       if @booking.save
         redirect_to car_path(@car.id)
-        flash.notice = "This car has been booked from the #{@booking.start_date} to the #{@booking.end_date}"
+        flash.notice = "You have booked this car from the #{@booking.start_date} to the #{@booking.end_date}"
       else
         @booking.start_date = @booking.start_date
         @booking.end_date = @booking.end_date
