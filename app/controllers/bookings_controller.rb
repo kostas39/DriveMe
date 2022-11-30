@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.destroy
     redirect_to car_path(@car)
-    flash.notice = "You have deleted your booking"
+    flash.notice = "You have cancelled your booking"
   end
 
   private
