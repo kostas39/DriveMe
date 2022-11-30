@@ -1,12 +1,30 @@
 // Import page specific CSS rules here.
 .description {
-  background-color: $gray;
   color: white;
+  border-radius: 10px;
+  box-shadow: 8px 6px 2px $black;
 }
 
 .desc-buttons {
-  display: flex;
-  gap: 5%;
   align-items: center;
   justify-content: center;
+  border-radius: 15px;
+}
+
+.show-desc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.title-card-show-cust {
+  display: flex;
+  flex-shrink: 1;
+  height: 15vh;
+  align-items: center;
+  // margin-bottom: 5%;
+  // h2 {
+  //   padding-top:5%;
+  // }
 }

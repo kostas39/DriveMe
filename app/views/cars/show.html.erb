@@ -23,14 +23,23 @@
   </div>
 </div>
 
-<div class="text-bg-dark">
-  <h2 class="p-3 m-0"> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
+<div class="p-5 bg-dark text-bg-dark title-card-show-cust d-flex justify-content-space-between gap-5 align-items-center">
+  <h2> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
+    <div class="d-flex justify-content-center align-items-center">
+      <% if current_user == @car.user %>
+        <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark desc-buttons p-4" %>
+        <%= link_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark desc-buttons p-4" %>
+      <% else %>
+        <%= nil %>
+      <% end %>
+      <%= link_to "Back to car list", :root, class:"btn btn-dark desc-buttons p-4"%>
+    </div>
 </div>
 
 <div class="show-desc">
 
+  <div class="description card m-3 p-3 bg-dark">
   <h2>Description:</h2>
-  <div class="description card m-3 p-3">
     <p> <%=  "This is a lovely #{@car.color} #{@car.model} from #{@car.brand}. It is located in #{@car.location}." %> </p>
     <p> Details </p>
     <ul>
@@ -39,7 +48,7 @@
     </ul>
   </div>
 
-  <div class="d-flex justify-content-around">
+  <div class="d-flex justify-content-center align-items-center">
     <ul>
       <% @car.bookings.each do |booking| %>
         <div class="booking">
@@ -54,28 +63,18 @@
     </ul>
 
     <% if user_signed_in? %>
-     <div class="row mb-5 justify-content-center">
-        <div class="booking_form">
+     <div class="row mb-5 justify-content-center align-items-center">
+        <div class="booking_form booking-card-cust bg-dark text-white">
           <h3>Book this car now </h3>
           <%= simple_form_for [@car, @booking] do |f| %>
-            <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
-            <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
-            <%= f.submit "Get driving", class: "btn btn-primary" %>
+              <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
+              <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
+              <%= f.submit "Get driving", class: "btn btn-light rounded-pill" %>
           <% end %>
         </div>
       </div>
     <% else %>
       <p> You must be logged in to book this car </p>
     <% end %>
-  </div>
-
-  <div class="desc-buttons">
-    <% if current_user == @car.user %>
-      <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark" %>
-      <%= button_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark" %>
-    <% else %>
-      <%= nil %>
-    <% end %>
-    <%= link_to 'Back to car list', href='/cars', class:"btn btn-dark" %>
   </div>
 </div>
