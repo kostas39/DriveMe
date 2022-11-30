@@ -1,3 +1,43 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "show";
+
+.cards-container-custom {
+  margin: 0 auto;
+  width:100;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 32px;
+  align-items: center;
+  justify-items: center;
+}
+
+
+.header-custom {
+  height:200px;
+  background-image: url("test.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  margin-bottom: 2%;
+  a {
+    text-decoration: none;
+    color:white;
+  }
+}
+
+.header-custom h1 {
+  padding: 1.5%;
+  color: #F7CDB4;
+}
+.header-custom a {
+  padding: 2%;
+  color: $sand;
+}
+.header-custom a:hover {
+  padding: 2%;
+  color: $black;
+  background-color: $sand;
+  border: 1px solid $sand;
+}

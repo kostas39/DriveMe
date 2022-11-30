@@ -1,46 +1,45 @@
-<h1> All Cars on Offer </h1>
-<% @cars.each do |car| %>
+<div class="header-custom">
+  <h1> All Cars Available </h1>
+  <%= link_to 'Rent Your Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
+</div>
+<div class="cards-container-custom"> <%# houses all cards %>
 
-<div class="cards-container-custom container rounded"> <%# houses all cards %>
-
-  <div class="m-4 card c-container shadow" style="width: 18rem;"> <%# houses individual car %>
-    <div id="carousel-car-card" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% if car.photos.attached? %>
-          <div class="carousel-item active image-carousel">
-            <%= cl_image_tag car.photos[0].key, class:'d-block w-100', alt:"something" %>
-          </div>
-          <% car.photos[1..-1].each do |photo| %>
-            <div class="carousel-item image-carousel">
-              <%= cl_image_tag photo.key, class:'d-block w-100' %>
+  <% @cars.each do |car| %>
+    <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
+      <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% if car.photos.attached? %>
+            <div class="carousel-item active image-carousel">
+              <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
             </div>
+            <% car.photos[1..-1].each do |photo| %>
+              <div class="carousel-item image-carousel">
+                <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+              </div>
+            <% end %>
           <% end %>
-          <% end %>
+        </div>
+    <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    </div> <%# end of carousel %>
+
+<%# Text below image %>
+      <div class="card-body">
+        <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
+        <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+        <p><%= "Price per day £#{car.price}" %></p>
+      </div>
+      <div class="card-body border-top">
+        <%= link_to "See more", car_path(car), class:"m-2 text-decoration-none" %>
       </div>
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-    <%# <%= cl_image_tag car.photo.key, alt:"Image of a #{car.brand} #{car.model} to rent" %>
-    <div class="card-body">
-      <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
-      <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
-      <p><%= "Price per day £#{car.price}" %></p>
-    </div>
-    <div class="card-body border-top">
-      <%= link_to "See more", car_path(car), class:"m-2 text-decoration-none" %>
-      <%#= link_to "Contact", "#", class:"m-2 text-decoration-none" %>
-    </div>
-  </div>
+    </div> <%# end of individual card container %>
+  <% end %> <%# end of @cars.all statement %>
 
-</div>
-
-<% end %>
-
-<p><%= link_to 'Add a car', href='cars/new', class:"btb btn-primary"%></p>
+</div> <%#end of container for all cards %>
