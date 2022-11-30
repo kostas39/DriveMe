@@ -1,6 +1,6 @@
 <div class="header-custom">
   <h1> All Cars Available </h1>
-  <%= link_to 'Rent Your Own Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
+  <%= link_to 'Rent Out Your Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
 </div>
 <div class="cards-container-custom"> <%# houses all cards %>
 
@@ -36,7 +36,7 @@
     </button>
     </div> <%# end of carousel %>
 
-<%# Text below image %>
+      <%# Text below image %>
       <div class="card-body">
         <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
         <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
