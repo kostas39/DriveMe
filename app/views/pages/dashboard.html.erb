@@ -47,14 +47,17 @@
   <% end %> <%# end of @cars.all statement %>
 </div>
 
+
 <h1>My bookings:</h1>
-<% @user_bookings.each do |booking| %>
-<ul>
-  <li><%= booking.start_date %></li>
-  <li><%= booking.end_date %></li>
-  <li>Car ID:<%= booking.car_id %></li>
-  <li>Owner:<%= booking.car.user.email %></li>
-  <li>Renter:<%= booking.user.email %></li>
-  <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark" %>
-</ul>
-<% end %>
+<div class="dashboard-card">
+  <% @user_bookings.each do |booking| %>
+  <ul>
+    <li><%= booking.start_date %></li>
+    <li><%= booking.end_date %></li>
+    <li>Car ID:<%= booking.car_id %></li>
+    <li>Owner:<%= booking.car.user.email %></li>
+    <li>Renter:<%= booking.user.email %></li>
+    <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark" %>
+  </ul>
+  <% end %>
+</div>
