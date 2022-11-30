@@ -44,9 +44,9 @@ class CarsController < ApplicationController
     redirect_to "/", status: :see_other
   end
 
-  # def dashboard
-  #   @cars = Car.all
-  # end
+  def dashboard
+    @cars = Car.all
+  end
 
   private
 
