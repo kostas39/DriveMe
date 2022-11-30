@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 ##  get 'bookings/update'
 ##  get 'bookings/destroy'
   devise_for :users
-  root to: "pages#home", to: "cars#index"
+  root  to: "cars#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # resources :cars
   # Defines the root path route ("/")
@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
- # resources :bookings, only: [:edit, :update]
+ # resources :bookings, only: [:show]
   delete "/bookings/:id/delete", to: "bookings#destroy", as: :booking
 end
