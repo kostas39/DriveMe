@@ -56,7 +56,7 @@ class BookingsController < ApplicationController
     @car = @booking.car
     authorize @booking
     @booking.destroy
-    redirect_to car_path(@car)
+    redirect_back(fallback_location: 'something')
     flash.notice = "You have cancelled your booking"
   end
 
