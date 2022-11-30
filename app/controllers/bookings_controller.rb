@@ -3,6 +3,10 @@ class BookingsController < ApplicationController
     @booking = policy_scope(Booking)
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @car = Car.find(params[:car_id])
     @booking = Booking.new
@@ -38,6 +42,7 @@ class BookingsController < ApplicationController
       @booking.user = current_user
       if @booking.save
         redirect_to car_path(@car.id)
+        flash.notice = "This car has been booked from the #{@booking.start_date} to the #{@booking.end_date}"
       else
         @booking.start_date = @booking.start_date
         @booking.end_date = @booking.end_date
@@ -48,9 +53,11 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
+    @car = @booking.car
     authorize @booking
     @booking.destroy
-    redirect_to cars_path
+    redirect_to car_path(@car)
+    flash.notice = "You have deleted your booking"
   end
 
   private
