@@ -1,6 +1,6 @@
 <div class="header-custom">
   <h1> All Cars Available </h1>
-  <%= link_to 'Rent Your Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
+  <%= link_to 'Rent Your Own Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
 </div>
 <div class="cards-container-custom"> <%# houses all cards %>
 
@@ -12,11 +12,18 @@
             <div class="carousel-item active image-carousel">
               <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
             </div>
-            <% car.photos[1..-1].each do |photo| %>
-              <div class="carousel-item image-carousel">
-                <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+              <% car.photos[1..-1].each do |photo| %>
+                <div class="carousel-item image-carousel">
+                  <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+                </div>
+              <% end %>
+            <% elsif car.photos.attached? == false %> <%# if car.photos.attached? == false %>
+              <div class="carousel-item active image-carousel">
+                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
               </div>
-            <% end %>
+              <div class="carousel-item active image-carousel">
+                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+              </div>
           <% end %>
         </div>
     <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
