@@ -1,18 +1,53 @@
-<h1>Here are your current cars:</h1>
-<% @user_cars.each do |car| %>
-<ul>
-  <li><%= car.brand %></li>
-  <li><%= car.model %></li>
-  <li><%= car.color %></li>
-  <li><%= car.location %></li>
-  <li><%= car.price %></li>
-  <li><%= car.photos %></li>
-<%= button_to 'Delete car', car, method: :delete, class:"btn btn-dark" %>
-<%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn btn-dark" %>
-</ul>
-<% end %>
+<h1>My cars:</h1>
 
-<h1>Here are your current bookings:</h1>
+<div class="dashboard-card">
+  <% @user_cars.each do |car| %>
+    <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
+      <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% if car.photos.attached? %>
+            <div class="carousel-item active image-carousel">
+              <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
+            </div>
+              <% car.photos[1..-1].each do |photo| %>
+                <div class="carousel-item image-carousel">
+                  <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+                </div>
+              <% end %>
+            <% elsif car.photos.attached? == false %> <%# if car.photos.attached? == false %>
+              <div class="carousel-item active image-carousel">
+                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+              </div>
+              <div class="carousel-item active image-carousel">
+                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+              </div>
+          <% end %>
+        </div>
+    <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    </div> <%# end of carousel %>
+
+      <%# Text below image %>
+      <div class="card-body">
+        <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
+        <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+      </div>
+      <div class="card-body border-top dashboard-card">
+        <%= button_to 'Delete car', car, method: :delete, class:"btn btn-dark" %>
+        <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn btn-dark" %>
+      </div>
+
+    </div> <%# end of individual card container %>
+  <% end %> <%# end of @cars.all statement %>
+</div>
+
+<h1>My bookings:</h1>
 <% @user_bookings.each do |booking| %>
 <ul>
   <li><%= booking.start_date %></li>
