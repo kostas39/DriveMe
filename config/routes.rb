@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
+  get "dashboard", to: "pages#dashboard"
+
   delete "/bookings/:id/delete", to: "bookings#destroy", as: :booking
 end

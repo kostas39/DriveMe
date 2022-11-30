@@ -1,0 +1,25 @@
+<h1>Here are your current cars:</h1>
+<% @user_cars.each do |car| %>
+<ul>
+  <li><%= car.brand %></li>
+  <li><%= car.model %></li>
+  <li><%= car.color %></li>
+  <li><%= car.location %></li>
+  <li><%= car.price %></li>
+  <li><%= car.photos %></li>
+<%= button_to 'Delete car', car, method: :delete, class:"btn btn-dark" %>
+<%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn btn-dark" %>
+</ul>
+<% end %>
+
+<h1>Here are your current bookings:</h1>
+<% @user_bookings.each do |booking| %>
+<ul>
+  <li><%= booking.start_date %></li>
+  <li><%= booking.end_date %></li>
+  <li>Car ID:<%= booking.car_id %></li>
+  <li>Owner:<%= booking.car.user.email %></li>
+  <li>Renter:<%= booking.user.email %></li>
+  <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark" %>
+</ul>
+<% end %>
