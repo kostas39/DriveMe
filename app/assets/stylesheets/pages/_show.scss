@@ -1,8 +1,12 @@
 // Import page specific CSS rules here.
-.description {
+.description-card {
   color: white;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 8px 6px 2px $black;
+  margin: 15px;
+  flex-grow: 1;
+  gap:20px;
+  flex-wrap: nowrap;
 }
 
 .desc-buttons {
@@ -23,8 +27,18 @@
   flex-shrink: 1;
   height: 15vh;
   align-items: center;
-  // margin-bottom: 5%;
-  // h2 {
-  //   padding-top:5%;
-  // }
+}
+
+.dab-container {
+  width:75%;
+  height:25%;
+}
+
+.booking-items-container {
+  display: flex;
+  border-radius: 15px;
+  flex-direction: column;
+  gap:10px;
+  height: 250px;
+  overflow-y: scroll;
 }
