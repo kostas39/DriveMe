@@ -48,19 +48,21 @@
         <div class="booking-items-container"> <%# contains each instance of a booking %>
           <% if @car.bookings.nil? == false %>
             <% @car.bookings.each do |booking| %>
-                <% if current_user == booking.user %>
-                  <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
-                    <h2>Booked from:</h2>
-                      <p><%= "#{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></p>
-                      <p>Paid: <strong><%= "£#{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}" %></strong></p>
-
-
-                    <div class="booking-button-container d-flex">
-                      <%= button_to "Cancel Booking", booking, class: "btn button-cancel rounded-pill mx-2 my-1 p-2", method: :delete %>
-                      <%= button_to "Edit Booking", booking, class: "btn button-edit rounded-pill mx-2 my-1 p-2" %>
-                    </div>
-                  </div>
-                <% end %>
+            <% if current_user == booking.user %>
+              <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
+                <h2>Booked from:</h2>
+                  <p><%= "#{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></p>
+                  <p>Paid: <strong><%= "£#{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}" %></strong></p>
+                <div class="booking-button-container d-flex">
+                  <% if booking.start_date > Date.today %>
+                    <%= button_to "Cancel Booking", booking, class: "btn button-cancel rounded-pill mx-2 my-1 p-2", method: :delete %>
+                    <%= button_to "Edit Booking", booking, class: "btn button-edit rounded-pill mx-2 my-1 p-2" %>
+                  <% else %>
+                    <%= nil %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
             <% end %> <%# end do car.bookings.each %>
           <% end %> <%# end main if %>
         </div>

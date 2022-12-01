@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require 'date'
   before_action :authenticate_user!
   include Pundit::Authorization
 
