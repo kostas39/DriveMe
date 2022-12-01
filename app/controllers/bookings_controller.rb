@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
       @booking.user = current_user
       if @booking.save
         redirect_to car_path(@car.id)
-        flash.notice = "You have booked this car from the #{@booking.start_date} to the #{@booking.end_date}"
+        flash.notice = "You have booked this car from the #{@booking.start_date.strftime("%a %d %B %Y")} to the #{@booking.end_date.strftime("%a %d %B %Y")}"
       else
         flash.alert = "Booking not validated"
       end
