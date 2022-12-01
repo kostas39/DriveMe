@@ -45,7 +45,7 @@
         <li> <%= "Price per day: #{@car.price}£" %>
         <li> <%= "Engine: #{@car.engine_size}" %>
       </ul>
-      <% if @car.bookings.count >0 %>
+      <% if @car.bookings.count >0 && user_signed_in? %>
         <div class="booking-items-container"> <%# contains each instance of a booking %>
           <% if @car.bookings.nil? == false %>
             <% @car.bookings.each do |booking| %>
