@@ -5,8 +5,8 @@
   </div>
     <%= link_to 'Rent Your Own Car', href='cars/new', class:"banner-button-cust btn p-3 rounded-pill"%>
 </div>
-<div class="cards-container-custom"> <%# houses all cards %>
 
+<div class="cards-container-custom"> <%# houses all cards %>
   <% @cars.each do |car| %>
     <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
       <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
@@ -51,5 +51,4 @@
 
     </div> <%# end of individual card container %>
   <% end %> <%# end of @cars.all statement %>
-
 </div> <%#end of container for all cards %>

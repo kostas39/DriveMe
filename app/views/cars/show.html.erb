@@ -69,17 +69,17 @@
       </div>
       </ul>
      <div class="justify-content-center align-items-center booking-card-cust bg-white text-dark"> <%# booking card %>
-          <h3>Book this car now </h3>
-          <%= simple_form_for [@car, @booking] do |f| %>
+          <% if user_signed_in? %>
+            <h3>Book this car now </h3>
+            <%= simple_form_for [@car, @booking] do |f| %>
               <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
               <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
               <%= f.submit "Get driving", class: "btn button-confirm w-100 rounded-pill" %>
+            <% end %>
+          <% else %>
+            <p> You must be logged in to book a car </p>
           <% end %>
       </div>
     </div>
   </div>
-
-
-<%# <% if user_signed_in? %>
-
 </div>
