@@ -2,6 +2,13 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @cars = policy_scope(Car)
+    if params[:query].present?
+      @cars = Car.search_by_brand_and_model_and_location(params[:query])
+    else
+      @cars = policy_scope(Car)
+    end
+
+
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
