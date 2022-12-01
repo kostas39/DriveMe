@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :cars do
     resources :bookings, only: [:new, :create]
   end
-
+  get "profile", to: "pages#profile"
   delete "/bookings/:id/delete", to: "bookings#destroy", as: :booking
 end
