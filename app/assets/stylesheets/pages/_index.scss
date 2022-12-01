@@ -16,14 +16,13 @@
 }
 
 
-.header-custom {
+.head-banner-custom {
   height:400px;
   background-image: url("test.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
-  flex-direction: column;
   color: white;
   margin-bottom: 2%;
   a {
@@ -34,22 +33,38 @@
 
 .logo-brand-banner {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 75%;
-  width: 60%;
+  width: 50%;
   gap:15px;
 }
 
-.header-custom h1 {
+.head-banner-custom h1 {
   color: $light-gray;
   font-size:10vh;
 }
-.svg-cust {
-  width: 12vh;
+
+.banner-button-cust {
+  position: absolute;
+  width: min-content;
+  height: 12vh;
+  left: 150px;
+  top: 400px;
+  z-index:800;
 }
 
-.header-custom a {
+.svg-cust {
+  width: 14vh;
+  box-sizing: border-box;
+  position: absolute;
+  right: 50px;
+  top: 375px;
+  z-index:800;
+}
+
+.head-banner-custom a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,12 +73,8 @@
   height:min-content;
   width:20%;
 }
-.header-custom a:hover {
+.head-banner-custom a:hover {
   color: $light-gray;
   background-color: $gray;
   border: 1px solid $gray;
-}
-
-.banner-button-cust {
-  margin-left: 10%;
 }

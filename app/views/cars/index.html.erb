@@ -1,7 +1,12 @@
-<div class="header-custom">
+<div class="head-banner-custom">
   <div class="logo-brand-banner">
-    <%= image_tag "car-logo-white.svg", class:"svg-cust" %>
-    <h1> DriveMe </h1>
+
+    <div>
+      <h1> Drive Away,</h1>
+    </div>
+    <div>
+      <h1> Your Way. </h1>
+    </div>
     <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -10,13 +15,16 @@
       %>
       <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
+
   </div>
-    <%= link_to 'Rent Your Own Car', href='cars/new', class:"banner-button-cust btn p-3 rounded-pill"%>
+      <%= link_to 'Rent Out Your Own Car', href='cars/new', class:"banner-button-cust btn p-3 rounded-pill"%>
+      <%= image_tag "car-logo-white.svg", class:"svg-cust" %>
 </div>
 
 <div class="cards-container-custom"> <%# houses all cards %>
   <% @cars.each do |car| %>
     <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
+  <a href="<%=car_path(car)%>%>" class="text-decoration-none">
       <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <% if car.photos.attached? %>
@@ -38,11 +46,11 @@
           <% end %>
         </div>
     <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon arrow-icon-cust" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon arrow-icon-cust" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
     </div> <%# end of carousel %>
@@ -53,11 +61,11 @@
         <p class="card-text">A Lovely <%= car.brand.capitalize %> in <%= car.color %>.</p>
         <p><%= "£#{car.price}/Day" %></p>
       </div>
-      <div class="card-body border-top">
-        <%= link_to "See more", car_path(car), class:"m-2 text-decoration-none" %>
+      <div class="card-body border-top d-flex justify-content-center align-content-center">
+        <%= link_to "See Details", car_path(car), class:"m-2 text-decoration-none" %>
       </div>
-
     </div> <%# end of individual card container %>
+    </a>
   <% end %> <%# end of @cars.all statement %>
   <div style="width: 100%; height: 600px;"
   data-controller="map"
