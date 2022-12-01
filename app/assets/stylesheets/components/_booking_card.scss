@@ -1,4 +1,9 @@
 .booking-card-cust {
   width:auto;
+  height:fit-content;
+  padding:30px;
   box-shadow: 8px 6px 2px $black;
+  border-radius: 15px;
+  position:sticky;
+  top: 50px;
 }

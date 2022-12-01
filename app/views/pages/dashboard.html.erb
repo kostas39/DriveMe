@@ -1,4 +1,86 @@
-<h1>My cars:</h1>
+<div class="dashboard-banner">
+  <h1> My dashboard </h1>
+</div>
+
+<<<<<<< HEAD
+<div class="dashboard-backing bg-secondary p-3">
+  <h3 class="m-2"> Current Bookings</h2>
+=======
+<div class="dashboard-container">
+  <h2 class="m-2">My bookings</h2>
+  <hr/>
+  <h3 class="m-2"> Current </h2>
+>>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
+
+  <% @user_bookings.each do |booking| %>
+    <% if booking.start_date <= Date.today && booking.end_date >= Date.today %>
+      <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+        <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+        <ul>
+          <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+          <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+        </ul>
+      <% days_left = booking.end_date - Date.today + 1 %>
+      <%= "#{days_left.to_i} days left before the end of your booking" %>
+      </div>
+    <% else %>
+      <% nil %>
+    <% end %>
+  <% end %>
+<<<<<<< HEAD
+</div>
+
+<div class="dashboard-backing bg-secondary p-3 my-4">
+  <h3 class="m-2"> Future Bookings </h2>
+=======
+
+  <h3 class="m-2 pt-3"> Future </h2>
+>>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
+
+  <div class="dashboard-card">
+    <% sorted_future_booking = @user_bookings.sort_by(&:start_date) %>
+    <% sorted_future_booking.each do |booking| %>
+      <% if booking.start_date > Date.today %>
+        <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+          <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+          <ul>
+            <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+            <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+          </ul>
+          <% days_left = booking.start_date - Date.today + 1 %>
+          <%= "#{days_left.to_i} days before the start of your booking" %>
+          <div class="card-body border-top dashboard-card mt-3 d-flex align-items-center justify-content-center">
+          <%= button_to "Delete this booking", booking, method: :delete, class:" btn button-cancel rounded-pill text-white" %>
+          </div>
+        </div>
+      <% else %>
+        <% nil %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<h3 class="m-2"> Past Bookings </h2>
+<div class="dashboard-backing bg-secondary p-3">
+  <div class="dashboard-card">
+    <% sorted_past_booking = @user_bookings.sort_by(&:start_date).reverse %>
+    <% sorted_past_booking.each do |booking| %>
+      <% if booking.end_date < Date.today %>
+        <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+          <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+          <ul>
+            <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+            <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+          </ul>
+        </div>
+      <% else %>
+        <% nil %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<h2 class="m-2">My cars</h2>
 
 <div class="dashboard-card">
   <% @user_cars.each do |car| %>
@@ -13,57 +95,47 @@
                 <div class="carousel-item image-carousel">
                   <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
                 </div>
-              <% end %>
-            <% elsif car.photos.attached? == false %> <%# if car.photos.attached? == false %>
-              <div class="carousel-item active image-carousel">
-                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
-              </div>
-              <div class="carousel-item active image-carousel">
-                <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
-              </div>
-          <% end %>
-        </div>
-      <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-      </button>
-      </div> <%# end of carousel %>
+                <div class="carousel-item active image-carousel">
+                  <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+                </div>
+            <% end %>
+          </div>
+        <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+        </div> <%# end of carousel %>
 
+        <%# Text below image %>
+        <div class="card-body">
+          <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
+          <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+        </div>
+        <div class="card-body border-top dashboard-card">
+          <%= button_to 'Delete car', car, method: :delete, class:"btn btn-dark border m-1" %>
+          <%= button_to 'Update car', edit_car_path(car), method: :get, class:"btn btn-dark border m-1" %>
+        </div>
+
+<<<<<<< HEAD
       <%# Text below image %>
       <div class="card-body">
-        <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
+        <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
         <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
       </div>
-      <div class="card-body border-top dashboard-card">
-        <%= button_to 'Delete car', car, method: :delete, class:"btn btn-dark border m-1" %>
-        <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn btn-dark border m-1" %>
+      <div class="card-body border-top dashboard-card d-flex justify-content-center align-content-center">
+        <%= button_to 'Delete car', car, method: :delete, class:"btn text-white button-cancel rounded-pill m-1" %>
+        <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn text-white button-edit rounded-pill m-1" %>
       </div>
 
     </div> <%# end of individual card container %>
   <% end %> <%# end of @cars.all statement %>
-</div>
-
-
-<h1>My bookings:</h1>
-<div class="dashboard-card">
-  <% @user_bookings.each do |booking| %>
-    <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
-      <ul>
-        <h3> My booking </h3>
-        <li><%= "Booking start date: #{booking.start_date}" %></li>
-        <li><%= "Booking start date: #{booking.end_date}" %></li>
-        <li><%= "Car: #{booking.car.brand} #{booking.car.model}"   %></li>
-        <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
-        <li>Owner: <%= booking.car.user.email %></li>
-        <li>Renter: <%= booking.user.email %></li>
-      </ul>
-      <div class="card-body border-top dashboard-card">
-        <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark border" %>
-      </div>
-    </div>
-  <% end %>
+=======
+      </div> <%# end of individual card container %>
+    <% end %> <%# end of @cars.all statement %>
+  </div>
+>>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
 </div>

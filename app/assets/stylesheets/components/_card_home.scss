@@ -5,7 +5,7 @@
   a {
     color: $light-gray;
   }
-  box-shadow: 10px 8px 4px $black;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   border:none;
 }
 
@@ -22,4 +22,6 @@
 
 .dashboard-card {
   display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
