@@ -8,7 +8,7 @@
   margin: 0 auto;
   width:100;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 32px;
   align-items: center;
   justify-items: center;
@@ -36,16 +36,16 @@
   justify-content: center;
   align-items: center;
   height: 75%;
-  width: 50%;
+  width: 60%;
+  gap:15px;
 }
 
 .header-custom h1 {
   color: $light-gray;
-  font-size:8vh;
+  font-size:10vh;
 }
 .svg-cust {
-  width: 8vh;
-  fill:white;
+  width: 12vh;
 }
 
 .header-custom a {
@@ -61,4 +61,8 @@
   color: $light-gray;
   background-color: $gray;
   border: 1px solid $gray;
+}
+
+.banner-button-cust {
+  margin-left: 10%;
 }
