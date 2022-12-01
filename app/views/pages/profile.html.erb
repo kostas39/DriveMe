@@ -1,6 +1,7 @@
-  
-<%= cl_image_tag @user.avatar.key, height: 150, width: 150, radius: "max", crop: "fill" %>
 
+<% if @user.photo.attached? %>
+<%= cl_image_tag @user.photo.key, height: 150, width: 150, radius: "max", crop: "fill" %>
+<% end %>
 <p><%= @user.first_name.capitalize %>
 <%= @user.last_name.capitalize %></p>
 <p><%= @user.email %></p>
