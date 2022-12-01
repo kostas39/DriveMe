@@ -1,7 +1,15 @@
-.booking-item-cust {
-
+.button-cancel {
+  background-color: $red;
 }
-.booking-inner-div {
-  background-color: $sand;
+
+.button-confirm {
+  background-color: $green;
+}
+
+.button-edit {
+  background-color: $yellow;
+}
+
+.booking-item-cust {
   border-radius: 15px;
 }
