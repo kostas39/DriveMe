@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  require 'date'
   def home
   end
 
