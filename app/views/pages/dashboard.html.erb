@@ -1,7 +1,8 @@
 <h1 class="m-3">My dashboard</h1>
 <hr/>
 
-<h2> Current booking </h2>
+<h2 class="m-2">My bookings</h2>
+<h3 class="m-2"> Current </h2>
 
 <% @user_bookings.each do |booking| %>
   <% if booking.start_date <= Date.today && booking.end_date >= Date.today %>
@@ -11,13 +12,15 @@
         <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
         <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
       </ul>
+    <% days_left = booking.end_date - Date.today + 1 %>
+    <%= "#{days_left.to_i} days left before the end of your booking" %>
     </div>
   <% else %>
     <% nil %>
   <% end %>
 <% end %>
 
-<h2> Future bookings </h2>
+<h3 class="m-2"> Future </h2>
 
 <div class="dashboard-card">
   <% @user_bookings.each do |booking| %>
@@ -28,7 +31,9 @@
           <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
           <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
         </ul>
-        <div class="card-body border-top dashboard-card">
+        <% days_left = booking.start_date - Date.today + 1 %>
+        <%= "#{days_left.to_i} days before the start of your booking" %>
+        <div class="card-body border-top dashboard-card mt-3">
         <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark border" %>
         </div>
       </div>
@@ -38,7 +43,7 @@
   <% end %>
 </div>
 
-<h2> Past bookings </h2>
+<h3 class="m-2"> Past </h2>
 
 <div class="dashboard-card">
   <% @user_bookings.each do |booking| %>
