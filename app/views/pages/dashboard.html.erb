@@ -23,7 +23,8 @@
 <h3 class="m-2"> Future </h2>
 
 <div class="dashboard-card">
-  <% @user_bookings.each do |booking| %>
+  <% sorted_future_booking = @user_bookings.sort_by(&:start_date) %>
+  <% sorted_future_booking.each do |booking| %>
     <% if booking.start_date > Date.today %>
       <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
         <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
@@ -46,7 +47,8 @@
 <h3 class="m-2"> Past </h2>
 
 <div class="dashboard-card">
-  <% @user_bookings.each do |booking| %>
+  <% sorted_past_booking = @user_bookings.sort_by(&:start_date).reverse %>
+  <% sorted_past_booking.each do |booking| %>
     <% if booking.end_date < Date.today %>
       <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
         <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
