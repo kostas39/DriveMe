@@ -2,15 +2,8 @@
   <h1> My dashboard </h1>
 </div>
 
-<<<<<<< HEAD
 <div class="dashboard-backing bg-secondary p-3">
   <h3 class="m-2"> Current Bookings</h2>
-=======
-<div class="dashboard-container">
-  <h2 class="m-2">My bookings</h2>
-  <hr/>
-  <h3 class="m-2"> Current </h2>
->>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
 
   <% @user_bookings.each do |booking| %>
     <% if booking.start_date <= Date.today && booking.end_date >= Date.today %>
@@ -27,15 +20,10 @@
       <% nil %>
     <% end %>
   <% end %>
-<<<<<<< HEAD
 </div>
 
 <div class="dashboard-backing bg-secondary p-3 my-4">
   <h3 class="m-2"> Future Bookings </h2>
-=======
-
-  <h3 class="m-2 pt-3"> Future </h2>
->>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
 
   <div class="dashboard-card">
     <% sorted_future_booking = @user_bookings.sort_by(&:start_date) %>
@@ -120,7 +108,6 @@
           <%= button_to 'Update car', edit_car_path(car), method: :get, class:"btn btn-dark border m-1" %>
         </div>
 
-<<<<<<< HEAD
       <%# Text below image %>
       <div class="card-body">
         <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
@@ -132,10 +119,6 @@
       </div>
 
     </div> <%# end of individual card container %>
+  <% end %>
   <% end %> <%# end of @cars.all statement %>
-=======
-      </div> <%# end of individual card container %>
-    <% end %> <%# end of @cars.all statement %>
-  </div>
->>>>>>> 72104d0f00145b281fce10b11af9d7001bede056
 </div>
