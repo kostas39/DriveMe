@@ -1,4 +1,63 @@
-<h1>My cars:</h1>
+<h1 class="m-3">My dashboard</h1>
+<hr/>
+
+<h2> Current booking </h2>
+
+<% @user_bookings.each do |booking| %>
+  <% if booking.start_date <= Date.today && booking.end_date >= Date.today %>
+    <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+      <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+      <ul>
+        <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+        <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+      </ul>
+    </div>
+  <% else %>
+    <% nil %>
+  <% end %>
+<% end %>
+
+<h2> Future bookings </h2>
+
+<div class="dashboard-card">
+  <% @user_bookings.each do |booking| %>
+    <% if booking.start_date > Date.today %>
+      <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+        <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+        <ul>
+          <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+          <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+        </ul>
+        <div class="card-body border-top dashboard-card">
+        <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark border" %>
+        </div>
+      </div>
+    <% else %>
+      <% nil %>
+    <% end %>
+  <% end %>
+</div>
+
+<h2> Past bookings </h2>
+
+<div class="dashboard-card">
+  <% @user_bookings.each do |booking| %>
+    <% if booking.end_date < Date.today %>
+      <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
+        <h3><%= "#{booking.car.brand} #{booking.car.model}" %> </h3>
+        <ul>
+          <li><%= "From #{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></li>
+          <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
+        </ul>
+      </div>
+    <% else %>
+      <% nil %>
+    <% end %>
+  <% end %>
+</div>
+
+<hr/>
+<h2 class="m-2">My cars</h2>
 
 <div class="dashboard-card">
   <% @user_cars.each do |car| %>
@@ -35,7 +94,7 @@
 
       <%# Text below image %>
       <div class="card-body">
-        <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
+        <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
         <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
       </div>
       <div class="card-body border-top dashboard-card">
@@ -45,25 +104,4 @@
 
     </div> <%# end of individual card container %>
   <% end %> <%# end of @cars.all statement %>
-</div>
-
-
-<h1>My bookings:</h1>
-<div class="dashboard-card">
-  <% @user_bookings.each do |booking| %>
-    <div class="m-3 p-3 card c-container bg-dark" style="width: 22rem;"> <%# houses individual booking %>
-      <ul>
-        <h3> My booking </h3>
-        <li><%= "Booking start date: #{booking.start_date}" %></li>
-        <li><%= "Booking start date: #{booking.end_date}" %></li>
-        <li><%= "Car: #{booking.car.brand} #{booking.car.model}"   %></li>
-        <li><%= "Booking price: #{booking.car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£"   %></li>
-        <li>Owner: <%= booking.car.user.email %></li>
-        <li>Renter: <%= booking.user.email %></li>
-      </ul>
-      <div class="card-body border-top dashboard-card">
-        <%= button_to "Delete this booking", booking, method: :delete, class:"btn btn-dark border" %>
-      </div>
-    </div>
-  <% end %>
 </div>
