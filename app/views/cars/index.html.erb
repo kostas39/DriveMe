@@ -1,6 +1,9 @@
 <div class="header-custom">
-  <h1> All Cars Available </h1>
-  <%= link_to 'Rent Your Own Car', href='cars/new', class:"btn btn-dark mx-3 p-3 rounded-pill"%>
+  <div class="logo-brand-banner">
+    <%= image_tag "car-logo.svg", class:"svg-cust" %>
+    <h1> DriveMe </h1>
+  </div>
+    <%= link_to 'Rent Your Own Car', href='cars/new', class:"btn p-3 rounded-pill"%>
 </div>
 <div class="cards-container-custom"> <%# houses all cards %>
 
@@ -38,9 +41,9 @@
 
 <%# Text below image %>
       <div class="card-body">
-        <h5 class="card-title"><%= car.brand %> - <%= car.model %></h5>
-        <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
-        <p><%= "Price per day £#{car.price}" %></p>
+        <h3 class="card-title"><%= car.brand.capitalize %> <%= car.model.capitalize %></h3>
+        <p class="card-text">A Lovely <%= car.brand.capitalize %> in <%= car.color %>.</p>
+        <p><%= "£#{car.price}/Day" %></p>
       </div>
       <div class="card-body border-top">
         <%= link_to "See more", car_path(car), class:"m-2 text-decoration-none" %>
