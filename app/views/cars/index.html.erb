@@ -2,6 +2,14 @@
   <div class="logo-brand-banner">
     <%= image_tag "car-logo-white.svg", class:"svg-cust" %>
     <h1> DriveMe </h1>
+    <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a car"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
   </div>
     <%= link_to 'Rent Your Own Car', href='cars/new', class:"banner-button-cust btn p-3 rounded-pill"%>
 </div>
