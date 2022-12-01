@@ -2,12 +2,14 @@
 @import "home";
 @import "show";
 @import "login";
+@import "dashboard";
+@import "form";
 
 .cards-container-custom {
   margin: 0 auto;
   width:100;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 32px;
   align-items: center;
   justify-items: center;
@@ -15,11 +17,13 @@
 
 
 .header-custom {
-  height:200px;
+  height:400px;
   background-image: url("test.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  flex-direction: column;
   color: white;
   margin-bottom: 2%;
   a {
@@ -28,17 +32,38 @@
   }
 }
 
-.header-custom h1 {
-  padding: 1.5%;
-  color: #F7CDB4;
+.logo-brand-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  width: 60%;
+  gap:15px;
 }
+
+.header-custom h1 {
+  color: $light-gray;
+  font-size:10vh;
+}
+.svg-cust {
+  width: 12vh;
+}
+
 .header-custom a {
-  padding: 2%;
-  color: $sand;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-gray;
+  color:$gray;
+  height:min-content;
+  width:20%;
 }
 .header-custom a:hover {
-  padding: 2%;
-  color: $black;
-  background-color: $sand;
-  border: 1px solid $sand;
+  color: $light-gray;
+  background-color: $gray;
+  border: 1px solid $gray;
+}
+
+.banner-button-cust {
+  margin-left: 10%;
 }

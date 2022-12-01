@@ -27,13 +27,20 @@ class BookingsController < ApplicationController
       end
     end
     if available.count > 0
-      @car = Car.find(params[:car_id])
       @booking = Booking.new
       authorize @booking
+      redirect_back(fallback_location: 'something')
       flash.alert = "Dates not available"
-      @booking.start_date = @booking.start_date
-      @booking.end_date = @booking.end_date
-      render :new, status: :unprocessable_entity
+    elsif end_date < start_date
+      @booking = Booking.new
+      authorize @booking
+      redirect_back(fallback_location: 'something')
+      flash.alert = "End date before start date"
+    elsif start_date < Date.today
+      @booking = Booking.new
+      authorize @booking
+      redirect_back(fallback_location: 'something')
+      flash.alert = "You can't book a car in the past"
     else
       @car = Car.find(params[:car_id])
       @booking = Booking.new(booking_params)
@@ -42,11 +49,9 @@ class BookingsController < ApplicationController
       @booking.user = current_user
       if @booking.save
         redirect_to car_path(@car.id)
-        flash.notice = "You have booked this car from the #{@booking.start_date} to the #{@booking.end_date}"
+        flash.notice = "You have booked this car from the #{@booking.start_date.strftime("%a %d %B %Y")} to the #{@booking.end_date.strftime("%a %d %B %Y")}"
       else
-        @booking.start_date = @booking.start_date
-        @booking.end_date = @booking.end_date
-        render :new
+        flash.alert = "Booking not validated"
       end
     end
   end
@@ -56,7 +61,7 @@ class BookingsController < ApplicationController
     @car = @booking.car
     authorize @booking
     @booking.destroy
-    redirect_to car_path(@car)
+    redirect_back(fallback_location: 'something')
     flash.notice = "You have cancelled your booking"
   end
 
