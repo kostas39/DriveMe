@@ -42,39 +42,40 @@
     <div class="dab-container"> <%# holds description and booking together %>
       <p> <%=  "This is a lovely #{@car.color} #{@car.model} from #{@car.brand}. It is located in #{@car.location}." %> </p>
       <ul>
-      <li> <%= "Price per day: #{@car.price}£" %>
-      <li> <%= "Engine: #{@car.engine_size}" %>
+        <li> <%= "Price per day: #{@car.price}£" %>
+        <li> <%= "Engine: #{@car.engine_size}" %>
       </ul>
+      <% if @car.bookings.count >0 %>
         <div class="booking-items-container"> <%# contains each instance of a booking %>
           <% if @car.bookings.nil? == false %>
             <% @car.bookings.each do |booking| %>
-            <% if current_user == booking.user %>
-              <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
-                <h2>Booked from:</h2>
+              <% if current_user == booking.user %>
+                <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
+                  <h2>Booked from:</h2>
                   <p><%= "#{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></p>
                   <p>Paid: <strong><%= "£#{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}" %></strong></p>
-                <div class="booking-button-container d-flex">
-                  <% if booking.start_date > Date.today %>
-                    <%= button_to "Cancel Booking", booking, class: "btn button-cancel rounded-pill mx-2 my-1 p-2", method: :delete %>
-                    <%= button_to "Edit Booking", booking, class: "btn button-edit rounded-pill mx-2 my-1 p-2" %>
-                  <% else %>
-                    <%= nil %>
-                  <% end %>
+                  <div class="booking-button-container d-flex">
+                    <% if booking.start_date > Date.today %>
+                      <%= button_to "Cancel Booking", booking, class: "btn button-cancel rounded-pill mx-2 my-1 p-2", method: :delete %>
+                      <%= button_to "Edit Booking", booking, class: "btn button-edit rounded-pill mx-2 my-1 p-2" %>
+                    <% else %>
+                      <%= nil %>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
             <% end %> <%# end do car.bookings.each %>
           <% end %> <%# end main if %>
         </div>
+      <% end %>
       </div>
-      </ul>
      <div class="justify-content-center align-items-center booking-card-cust bg-white text-dark"> <%# booking card %>
-          <h3>Book this car now </h3>
-          <%= simple_form_for [@car, @booking] do |f| %>
-              <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
-              <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
-              <%= f.submit "Get driving", class: "btn button-confirm w-100 rounded-pill" %>
-          <% end %>
+        <h3>Book this car now </h3>
+        <%= simple_form_for [@car, @booking] do |f| %>
+          <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
+          <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
+          <%= f.submit "Get driving", class: "btn button-confirm w-100 rounded-pill" %>
+        <% end %>
       </div>
     </div>
   </div>
