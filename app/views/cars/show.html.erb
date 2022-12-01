@@ -54,7 +54,11 @@
         <div class="booking">
           <% if current_user == booking.user %>
             <li> <%= "Start date: #{booking.start_date} - End date #{booking.end_date} - #{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}£" %>
-            <%= button_to "Cancel this booking", booking, method: :delete %>
+            <% if booking.start_date > Date.today %>
+              <%= button_to "Cancel this booking", booking, method: :delete %>
+            <% else %>
+              <%= nil %>
+            <% end %>
           <% else %>
             <%= nil %>
           <% end %>
