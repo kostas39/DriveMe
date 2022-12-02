@@ -18,6 +18,10 @@ class CarPolicy < ApplicationPolicy
     true
   end
 
+  def car_active_toggle?
+    record.user == user
+  end
+
   def update?
     record.user == user
   end

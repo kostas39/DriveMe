@@ -64,9 +64,25 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
+  def car_active_toggle
+    @car = Car.find(params[:id])
+    authorize @car
+    if @car.active == true
+      then @car.active = false
+      @car.save
+      redirect_back(fallback_location: 'something')
+      flash.alert = "This car can't be booked anymore"
+    else
+      @car.active = true
+      @car.save
+      redirect_back(fallback_location: 'something')
+      flash.alert = "This car is now bookable"
+    end
+  end
+
   private
 
   def car_params
-    params.require(:car).permit(:user, :brand, :model, :color, :location, :engine_size, :price, :plate, photos: [])
+    params.require(:car).permit(:user, :brand, :model, :color, :location, :engine_size, :price, :plate, :active, photos: [])
   end
 end
