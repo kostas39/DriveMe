@@ -66,11 +66,11 @@ class CarsController < ApplicationController
 
   def car_active_toggle
     if car.active == true
-      then false
+      then car.active = false
       redirect_back(fallback_location: 'something')
       flash.alert = "This car can't be booked anymore"
     else
-      true
+      car.active = true
       redirect_back(fallback_location: 'something')
       flash.alert = "This car is now bookable"
     end
@@ -79,6 +79,6 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:user, :brand, :model, :color, :location, :engine_size, :price, :plate, photos: [])
+    params.require(:car).permit(:user, :brand, :model, :color, :location, :engine_size, :price, :plate, :active, photos: [])
   end
 end

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   end
   get "profile", to: "pages#profile"
   delete "/bookings/:id/delete", to: "bookings#destroy", as: :booking
+
+  patch "/car/:id/active", to: "cars#car_active_toggle", as: :active_toggle
 end

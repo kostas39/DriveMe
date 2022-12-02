@@ -27,7 +27,7 @@
   <h2> <%= @car.brand %> <%= @car.model %> in <%= @car.color %> </h2>
     <div class="d-flex justify-content-center align-items-center">
       <% if current_user == @car.user %>
-        <%= button_to 'Delete car', @car, method: :delete, class:"btn btn-dark desc-buttons p-4" %>
+        <%= link_to 'Deactivate car', active_toggle_path(@car), class:"btn btn-dark desc-buttons p-4" %>
         <%= link_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark desc-buttons p-4" %>
       <% else %>
         <%= nil %>
@@ -44,6 +44,7 @@
       <ul>
         <li> <%= "Price per day: #{@car.price}£" %>
         <li> <%= "Engine: #{@car.engine_size}" %>
+        <li> <%= "Status: #{@car.active}" %>
       </ul>
       <% if @car.bookings.count >0 && user_signed_in? %>
         <div class="booking-items-container"> <%# contains each instance of a booking %>
