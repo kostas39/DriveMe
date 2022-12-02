@@ -10,12 +10,12 @@
             <%= cl_image_tag photo.key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
           </div>
         <% end %>
-      <% elsif @car.photos.attached? == false %> <%# if car.photos.attached? == false %>
+      <% else %> <%# if car.photos.attached? == false %>
         <div class="carousel-item active image-carousel">
-          <img src="assets/images/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+          <img src="/assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
         </div>
         <div class="carousel-item active image-carousel">
-          <img src="assets/images/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+          <img src="/assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
         </div>
       <% end %>
     </div>
