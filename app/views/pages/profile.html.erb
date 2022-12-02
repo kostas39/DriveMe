@@ -1,4 +1,4 @@
-<div class="container w-50 d-flex justify-content-center mt-3">
+<div class="container w-50 d-flex justify-content-center mt-3 mb-5">
 <% if @user.photo.attached? %>
 <%= cl_image_tag @user.photo.key, height: 150, width: 150, radius: "max", crop: "fill" %>
 <% end %>
@@ -17,5 +17,11 @@
 <%# <%= @user.bookings %>
 
 
+  <%# <%= @user.cars %>
+  <%# <%= @user.bookings %>
 
+</div>
+<div class="mt-5">
+<%= render "shared/footer", class: "mt-5" %>
+</div>
 <%# <%= link_to "Edit profile", edit_user_registration_path %>
