@@ -76,45 +76,106 @@
   <h2 class="m-2">My cars</h2>
   <hr/>
 
+  <h3 class="m-2"> Active </h2>
+  <p class="m-2"> These cars can be booked <p>
+
   <div class="dashboard-card">
     <% @user_cars.each do |car| %>
-      <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
-        <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% if car.photos.attached? %>
-              <div class="carousel-item active image-carousel">
-                <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
+      <% if car.active %>
+        <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
+          <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% if car.photos.attached? %>
+                <div class="carousel-item active image-carousel">
+                  <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
+                </div>
+                  <% car.photos[1..-1].each do |photo| %>
+                    <div class="carousel-item image-carousel">
+                      <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+                    </div>
+                    <div class="carousel-item active image-carousel">
+                      <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+                    </div>
+                <% end %>
               </div>
-                <% car.photos[1..-1].each do |photo| %>
-                  <div class="carousel-item image-carousel">
-                    <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
-                  </div>
-                  <div class="carousel-item active image-carousel">
-                    <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
-                  </div>
-              <% end %>
-            </div>
-          <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-          </button>
-          </div> <%# end of carousel %>
+            <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+            </div> <%# end of carousel %>
 
-        <%# Text below image %>
-        <div class="card-body">
-          <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
-          <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
-        </div>
-        <div class="card-body border-top dashboard-card d-flex justify-content-center align-content-center">
-          <%= button_to 'Delete car', car, method: :delete, class:"btn text-white button-cancel rounded-pill m-1" %>
-          <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn text-white button-edit rounded-pill m-1" %>
-        </div>
+          <%# Text below image %>
+          <div class="card-body">
+            <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
+            <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+          </div>
+          <div class="card-body border-top dashboard-card d-flex justify-content-center align-content-center">
+            <% if car.active == true %>
+              <%= button_to 'Deactivate car', active_toggle_path(car), method: :patch, class:"btn text-white button-cancel rounded-pill m-1" %>
+            <% else %>
+              <%= button_to 'Activate car', active_toggle_path(car), method: :patch, class:"btn text-white button-confirm rounded-pill m-1" %>
+            <% end %>
+            <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn text-white button-edit rounded-pill m-1" %>
+          </div>
 
-      </div> <%# end of individual card container %>
+        </div> <%# end of individual card container %>
+      <% end %>
+    <% end %>
+    <% end %> <%# end of @cars.all statement %>
+  </div>
+
+  <h3 class="m-2"> Inactive </h2>
+  <p class="m-2"> These cars can't be booked <p>
+
+  <div class="dashboard-card">
+    <% @user_cars.each do |car| %>
+      <% if car.active == false %>
+        <div class="m-3 card c-container bg-dark" style="width: 18rem;"> <%# houses individual car %>
+          <div id="carousel-car-card-<%=car.id%>" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% if car.photos.attached? %>
+                <div class="carousel-item active image-carousel">
+                  <%= cl_image_tag car.photos[0].key, class:'d-block w-100 card-img-cust', alt:"something" %>
+                </div>
+                  <% car.photos[1..-1].each do |photo| %>
+                    <div class="carousel-item image-carousel">
+                      <%= cl_image_tag photo.key, class:'d-block w-100 card-img-cust' %>
+                    </div>
+                    <div class="carousel-item active image-carousel">
+                      <img src="assets/placeholder.jpeg" class='d-block w-100 card-img-cust' width="288" height="189.59">
+                    </div>
+                <% end %>
+              </div>
+            <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next arrow-cust" type="button" data-bs-target="#carousel-car-card-<%=car.id%>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+            </div> <%# end of carousel %>
+
+          <%# Text below image %>
+          <div class="card-body">
+            <h3 class="card-title"><%= car.brand %> - <%= car.model %></h3>
+            <p class="card-text">A Lovely <%= car.brand %> in <%= car.color %></p>
+          </div>
+          <div class="card-body border-top dashboard-card d-flex justify-content-center align-content-center">
+            <% if car.active == true %>
+              <%= button_to 'Deactivate car', active_toggle_path(car), method: :patch, class:"btn text-white button-cancel rounded-pill m-1" %>
+            <% else %>
+              <%= button_to 'Activate car', active_toggle_path(car), method: :patch, class:"btn text-white button-confirm rounded-pill m-1" %>
+            <% end %>
+            <%= button_to 'Edit car', edit_car_path(car), method: :get, class:"btn text-white button-edit rounded-pill m-1" %>
+          </div>
+
+        </div> <%# end of individual card container %>
+      <% end %>
     <% end %>
     <% end %> <%# end of @cars.all statement %>
   </div>
