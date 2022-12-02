@@ -64,6 +64,18 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
+  def car_active_toggle
+    if car.active == true
+      then false
+      redirect_back(fallback_location: 'something')
+      flash.alert = "This car can't be booked anymore"
+    else
+      true
+      redirect_back(fallback_location: 'something')
+      flash.alert = "This car is now bookable"
+    end
+  end
+
   private
 
   def car_params
