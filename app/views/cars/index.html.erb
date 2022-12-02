@@ -7,18 +7,18 @@
     <div>
       <h1> Your Way. </h1>
     </div>
-    <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a car"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
 
   </div>
       <%= link_to 'Rent Out Your Own Car', href='cars/new', class:"banner-button-cust btn p-3 rounded-pill"%>
       <%= image_tag "car-logo-white.svg", class:"svg-cust" %>
+      <%= form_with url: cars_path, method: :get, class: "d-flex search-cars-bar" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "p-3 search-query form-control",
+          placeholder: "Search for a car"
+        %>
+        <%= submit_tag "Search", class: "btn btn-dark" %>
+      <% end %>
 </div>
 
 <div class="cards-container-custom"> <%# houses all cards %>
