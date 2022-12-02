@@ -1,16 +1,16 @@
+<div>
+  <% if @user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, height: 150, width: 150, radius: "max", crop: "fill" %>
+  <% end %>
+  <p><%= @user.first_name.capitalize %>
+  <%= @user.last_name.capitalize %></p>
+  <p><%= @user.email %></p>
 
-<% if @user.photo.attached? %>
-<%= cl_image_tag @user.photo.key, height: 150, width: 150, radius: "max", crop: "fill" %>
-<% end %>
-<p><%= @user.first_name.capitalize %>
-<%= @user.last_name.capitalize %></p>
-<p><%= @user.email %></p>
+  <%= link_to 'Edit profile', edit_user_registration_path %>
 
-<%= link_to 'Edit profile', edit_user_registration_path %>
+  <%# <%= @user.cars %>
+  <%# <%= @user.bookings %>
 
-<%# <%= @user.cars %>
-<%# <%= @user.bookings %>
-
-
-
+</div>
+<%= render "shared/footer" %>
 <%# <%= link_to "Edit profile", edit_user_registration_path %>
