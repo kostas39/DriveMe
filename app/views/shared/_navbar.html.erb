@@ -23,7 +23,7 @@
         </li>
       </div>
        <% if user_signed_in? %>
-        <ul>
+        <ul class="list-group">
         <div class="btn" aria-labelledby="navbarDropdown">
           <li class="btn nav-item dropdown">
           <%= image_tag "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png", class: "text-decoration-none avatar w-40", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -32,8 +32,8 @@
           </li>
         </ul>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <li class="nav-item list-group-item">
+            <%= link_to "Login", new_user_session_path, class: "m-2 nav-link" %>
           </li>
         <% end %>
           </ul>
