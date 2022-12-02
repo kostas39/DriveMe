@@ -52,34 +52,34 @@
           <% if @car.bookings.nil? == false %>
             <% sorted_bookings = @car.bookings.sort_by(&:start_date).reverse %>
             <% sorted_bookings.each do |booking| %>
-                <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
-                  <h2>Booked from:</h2>
-                  <p><%= "#{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></p>
-                  <p>Paid: <strong><%= "£#{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}" %></strong></p>
-                  <div class="booking-button-container d-flex">
+              <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
+                <h2>Booked from:</h2>
+                <p><%= "#{booking.start_date.strftime("%a %d %B %Y")} to #{booking.end_date.strftime("%a %d %B %Y")}" %></p>
+                <p>Paid: <strong><%= "£#{@car.price.to_i * ((booking.end_date - booking.start_date).to_i + 1)}" %></strong></p>
+                <div class="booking-button-container d-flex">
+                  <% if current_user == booking.user %>
                     <% if booking.start_date > Date.today %>
                       <%= button_to "Cancel Booking", booking, class: "btn button-cancel rounded-pill mx-2 my-1 p-2", method: :delete %>
-                    <% else %>
-                      <%= nil %>
                     <% end %>
-                  </div>
+                  <% end %>
                 </div>
+              </div>
             <% end %> <%# end do car.bookings.each %>
           <% end %> <%# end main if %>
         </div>
       <% end %>
       </div>
-     <div class="justify-content-center align-items-center booking-card-cust bg-white text-dark"> <%# booking card %>
-          <% if user_signed_in? %>
-            <h3>Book this car now </h3>
-            <%= simple_form_for [@car, @booking] do |f| %>
-              <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
-              <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
-              <%= f.submit "Get driving", class: "btn button-confirm w-100 rounded-pill" %>
-            <% end %>
-          <% else %>
-            <p> You must be logged in to book a car </p>
+      <div class="justify-content-center align-items-center booking-card-cust bg-white text-dark"> <%# booking card %>
+        <% if user_signed_in? %>
+          <h3>Book this car now </h3>
+          <%= simple_form_for [@car, @booking] do |f| %>
+            <%= f.input :start_date, as: :string, required: false, input_html: {data: { controller: "flatpickr"}, id: "range_start" } %>
+            <%= f.input :end_date, as: :string, required: false, input_html: { data: { controller: "flatpickr" }, id: "range_end" } %>
+            <%= f.submit "Get driving", class: "btn button-confirm w-100 rounded-pill" %>
           <% end %>
+        <% else %>
+          <p> You must be logged in to book a car </p>
+        <% end %>
       </div>
     </div>
   </div>
