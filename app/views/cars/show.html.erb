@@ -1,17 +1,17 @@
 <div class="m-0 show-banner h-50"> <%# houses individual car %>
-    <div id="carousel-car-card" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% if @car.photos.attached? %>
-          <div class="carousel-item active image-carousel">
-            <%= cl_image_tag @car.photos[0].key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
+  <div id="carousel-car-card" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% if @car.photos.attached? %>
+        <div class="carousel-item active image-carousel">
+          <%= cl_image_tag @car.photos[0].key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
+        </div>
+        <% @car.photos[1..-1].each do |photo| %>
+          <div class="carousel-item image-carousel">
+            <%= cl_image_tag photo.key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
           </div>
-          <% @car.photos[1..-1].each do |photo| %>
-            <div class="carousel-item image-carousel">
-              <%= cl_image_tag photo.key, class:'d-block w-100 banner-img-cust', alt:"Image of a #{@car.brand} #{@car.model}" %>
-            </div>
-          <% end %>
-          <% end %>
-      </div>
+        <% end %>
+      <% end %>
+    </div>
     <button class="carousel-control-prev arrow-cust" type="button" data-bs-target="#carousel-car-card" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -33,8 +33,6 @@
           <%= button_to 'Activate car', active_toggle_path(@car), method: :patch, class:"btn btn-dark desc-buttons p-4" %>
         <% end %>
         <%= link_to 'Edit car', edit_car_path(@car), method: :get, class:"btn btn-dark desc-buttons p-4" %>
-      <% else %>
-        <%= nil %>
       <% end %>
       <%= link_to "Back to Search", :root, class:"btn btn-dark desc-buttons p-4"%>
     </div>
@@ -48,12 +46,13 @@
       <ul>
         <li> <%= "Price per day: #{@car.price}£" %>
         <li> <%= "Engine: #{@car.engine_size}" %>
-        <li> <%= @car.active ? "This car is bookable" : 'This car is currently not bookable'  %>
+         <%#= @car.active ? "This car is bookable" : 'This car is currently not bookable'  %>
       </ul>
       <% if @car.bookings.count >0 && user_signed_in? %>
         <div class="booking-items-container"> <%# contains each instance of a booking %>
           <% if @car.bookings.nil? == false %>
-            <% @car.bookings.each do |booking| %>
+            <% sorted_bookings = @car.bookings.sort_by(&:start_date).reverse %>
+            <% sorted_bookings.each do |booking| %>
               <% if current_user == booking.user %>
                 <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
                   <h2>Booked from:</h2>
