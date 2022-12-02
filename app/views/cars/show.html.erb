@@ -53,7 +53,8 @@
       <% if @car.bookings.count >0 && user_signed_in? %>
         <div class="booking-items-container"> <%# contains each instance of a booking %>
           <% if @car.bookings.nil? == false %>
-            <% @car.bookings.each do |booking| %>
+            <% sorted_bookings = @car.bookings.sort_by(&:start_date).reverse %>
+            <% sorted_bookings.each do |booking| %>
               <% if current_user == booking.user %>
                 <div class="bg-white p-4 booking-item-cust text-dark text-decoration-none">
                   <h2>Booked from:</h2>
