@@ -4,9 +4,9 @@
     <%= f.input :model %>
     <%= f.input :color %>
     <%= f.input :location %>
-    <%= f.input :engine_size %>
+    <%= f.input :engine_size, label: "In Litres" %>
     <%= f.input :plate %>
-    <%= f.input :price, label: "Price per day" %>
+    <%= f.input :price, label: "Price Per Day in Pounds £" %>
     <%= f.input :photos, as: :file, input_html: { multiple:true } %>
     <%= f.button :submit, class: "btn button-confirm w-100 rounded-pill" %>
   <% end %>
